@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Overpass+Mono:700|IBM+Plex+Sans:400");
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: #e6fcf5;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #333;
+}
+
+p {
+  margin-bottom: 1.15rem;
+  max-width: 72ch;
+  margin: auto;
+  padding: 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Overpass Mono", monospace;
+}
+
+h1 {
+  font-size: larger;
+  text-align: center;
+}
+
+h2 {
+  font-size: large;
+  text-align: center;
+}
+
+small,
+.text_small {
+  font-size: 0.8em;
+}
+
+#heatMap{
+  margin: auto;
+  width: fit-content;
+}
+
+.tooltip {
+  position: absolute;
+  max-width: 200px;
+}
+
+@media only screen and (max-device-width: 768px) {
+  html {
+    font-size: 28px;
+  }
+}
