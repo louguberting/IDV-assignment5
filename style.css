@@ -10,6 +10,9 @@ body {
   font-weight: 400;
   line-height: 1.65;
   color: #333;
+  max-width: 800px;
+  margin: auto;
+  font-size: 16px;
 }
 
 p {
@@ -25,16 +28,19 @@ h3,
 h4,
 h5 {
   font-family: "Overpass Mono", monospace;
+  text-align: center;
 }
 
 h1 {
   font-size: larger;
-  text-align: center;
 }
 
 h2 {
   font-size: large;
-  text-align: center;
+}
+
+h4 {
+  font-size: medium;
 }
 
 small,
@@ -42,7 +48,7 @@ small,
   font-size: 0.8em;
 }
 
-#heatMap{
+#heatMap {
   margin: auto;
   width: fit-content;
 }
@@ -57,6 +63,22 @@ small,
     font-size: 28px;
   }
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+th,
+td {
+  border: 5px solid red;
+  padding: 8px;
+  text-align: center;
+  color: red;
+  font-size: 1.5rem;
+}
+
 /* The classes below are for Assignment 2 SVGs */
 .original {
   margin: 0 auto;
@@ -71,9 +93,162 @@ small,
 }
 
 .flipped svg {
-  transform: scale(-1,1);
+  transform: scale(-1, 1);
 }
 
-.squeeze svg{
+.squeeze svg {
   transform: scale(1, .5);
+}
+
+/* Styles from Assignment 3 */
+.bar {
+  fill: #e6c45c;
+  stroke: #888;
+  stroke-width: 2px;
+}
+
+.bar-dashed {
+  fill: none;
+  stroke: #e6c45c;
+  stroke-width: 2.5px;
+  stroke-dasharray: 6, 4;
+}
+
+text {
+  font-size: 20px;
+  text-anchor: middle;
+  font-weight: bold;
+}
+
+.axis text {
+  font-size: 18px;
+}
+
+.ylabel {
+  text-anchor: left;
+}
+
+.grid line {
+  stroke: #999;
+  stroke-opacity: 0.5;
+  shape-rendering: crispEdges;
+}
+
+.vector {
+  stroke-width: 2px;
+  fill: none;
+  marker-end: url(#arrow);
+}
+
+.solid {
+  stroke: #333;
+}
+
+.dashed1 {
+  stroke: #1d3557;
+  stroke-dasharray: 6, 4;
+}
+
+.dashed2 {
+  stroke: #4a90a4;
+  stroke-dasharray: 6, 4;
+}
+
+.dashed-dark {
+  stroke: #223a5e;
+  stroke-width: 2px;
+  stroke-dasharray: 6, 4;
+}
+
+.dashed-light {
+  stroke: #468d9c;
+  stroke-width: 2px;
+  stroke-dasharray: 6, 4;
+}
+
+.sup {
+  font-size: 14px;
+  dy: -10px;
+}
+
+/* Container for positioning the SVG and legend for the area chart */
+#area-chart-container {
+  position: relative;
+  width: 900px;
+  height: 300px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+}
+
+/* Style the axes to match the image */
+#area-chart-container .axis path,
+#area-chart-container .axis line {
+  fill: none;
+  stroke: #333;
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+}
+
+#area-chart-container .axis text {
+  font-size: 12px;
+  fill: #333;
+}
+
+/* Hide the vertical tick lines, keep the bottom domain line */
+#area-chart-container .x-axis .tick line {
+  stroke: none;
+}
+
+#area-chart-container .y-axis .tick line {
+  stroke: #eee;
+}
+
+#area-chart-container .y-axis path.domain {
+  stroke: none;
+  /* Hide the vertical y-axis line */
+}
+
+/* Axis labels */
+#area-chart-container .axis-label {
+  font-size: 14px;
+  fill: #333;
+  text-anchor: middle;
+}
+
+/* HTML Legend */
+#area-chart-legend {
+  position: absolute;
+  top: 20px;
+  /* Positioned from margin.top */
+  left: 70px;
+  /* Positioned from margin.left */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#area-chart-legend .legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+#area-chart-legend .legend-swatch {
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sketch-line {
+  stroke: #31326f;
+  /* Dark blue color for lines */
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.filled-circle {
+  fill: #31326f;
 }
