@@ -57,3 +57,23 @@ small,
     font-size: 28px;
   }
 }
+/* The classes below are for Assignment 2 SVGs */
+.original {
+  margin: 0 auto;
+}
+
+.rotate svg {
+  transform: rotate(180deg);
+}
+
+.bw svg {
+  filter: grayscale(1);
+}
+
+.flipped svg {
+  transform: scale(-1,1);
+}
+
+.squeeze svg{
+  transform: scale(1, .5);
+}
