@@ -4,179 +4,85 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Defence Success Rates Against Adversarial Attacks</title>
+  <title>Visualization Voltron</title>
 
   <link rel="stylesheet" href="normalize.css" />
   <link rel="stylesheet" href="style.css" />
-  <script type="module">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script type="module" src="scripts/assignment1.js"></script>
+  <script type="module" src="scripts/assignment4.js"></script>
 
-    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-    const margin = { top: 30, right: 25, bottom: 5, left: 150 }
-    const width = 825 - margin.left - margin.right,
-      height = 640 - margin.top - margin.bottom;
-
-    const svg = d3.select("#heatMap")
-      .append("svg")
-      .attr("width", width + 155)
-      .attr("height", height + 35)
-      .append("g")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-    const rawdata = await d3.csv("data.csv");
-
-
-    let data = [];
-    for (let d of rawdata) {
-      for (let col of rawdata.columns.slice(1)) {
-        let row = {};
-        row[rawdata.columns[0]] = d[rawdata.columns[0]];
-        row['method'] = col;
-        row['rate'] = d[col];
-        data.push(row);
-      }
-    };
-
-
-    console.log(data)
-
-    // Extract the Header Row labels
-    const trainingMethods = Array.from(new Set(data.map(d => d.method)))
-    console.log(trainingMethods)
-    // Extract the Attack labels from the first column
-    const attacks = Array.from(new Set(data.map(d => d.Attack)))
-    console.log(attacks)
-
-    // Build X scale and axis
-    const x = d3.scaleBand()
-      .range([0, width])
-      .domain(trainingMethods)
-      .padding(0.05);
-    svg.append("g")
-      .style("font-size", 15)
-      .call(d3.axisTop(x).tickSize(0))
-      .select(".domain").remove()
-
-    // Build Y scales and axis:
-    const y = d3.scaleBand()
-      .range([0, height])
-      .domain(attacks)
-      .padding(0.05);
-    svg.append("g")
-      .style("font-size", 15)
-      .call(d3.axisLeft(y).tickSize(0))
-      .select(".domain").remove()
-
-    // Build color scale
-    const myColor = d3.scaleSequential()
-      .domain([0, 100])
-      .interpolator(d3.interpolateGreens)
-
-    // create a tooltip
-    const tooltip = d3.select("#heatMap")
-      .append("div")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "2px")
-      .style("border-radius", "5px")
-      .style("padding", "5px")
-
-    // Three function that change the tooltip when user hover / move / leave a cell
-    const mouseover = function (event, d) {
-      tooltip
-        .style("opacity", 1)
-      d3.select(this)
-        .style("stroke", "black")
-        .style("opacity", 1)
-    }
-    const mousemove = function (event, d) {
-      tooltip
-        .html(d.method + " has a defense success rate of " + d.rate + "% against " + d.Attack)
-        .style("left", (event.x + 10) + "px")
-        .style("top", (event.y + 10) + "px")
-    }
-    const mouseleave = function (event, d) {
-      tooltip
-        .style("opacity", 0)
-      d3.select(this)
-        .style("stroke", "none")
-        .style("opacity", 0.8)
-    }
-
-    // add the squares
-    svg.selectAll()
-      .data(data, function (d) { return d.method + ':' + d.Attack; })
-      .join("rect")
-      .attr("x", function (d) { return x(d.method) })
-      .attr("y", function (d) { return y(d.Attack) })
-      .attr("rx", 4)
-      .attr("ry", 4)
-      .attr("width", x.bandwidth())
-      .attr("height", y.bandwidth())
-      .style("fill", function (d) { return myColor(d.rate) })
-      .style("stroke-width", 4)
-      .style("stroke", "none")
-      .style("opacity", 0.)
-      .on("mouseover", mouseover)
-      .on("mousemove", mousemove)
-      .on("mouseleave", mouseleave)
-      .transition()
-      .duration(1000)
-      .style("opacity", 1)
-
-  </script>
 </head>
 
 <body>
-  <h1>Defence Success Rates Against Adversarial Attacks</h1>
-  <h2>A comparison of the probability that 9 training methods are able to produce a correct prediction given 26
-    different attacks</h2>
-  <div id="heatMap"></div>
-  <p>
-    This project represents my attempt to visualize data from the paper <a
-      href="https://arxiv.org/pdf/2309.00879">"Towards Certified Probabilistic Robustness
-      with High Accuracy" 2023 by Zhang, Zhang and Sun</a>
+  <div id="assignment1">
+    <h1>Assignment 1</h1>
+    <h2>Singapore PSI table</h2>
+    <h4 id='timestring'></h4>
+    <table id='PSItable' class="table">
+      <th>Metric</th>
+      <th>West</th>
+      <th>East</th>
+      <th>Central</th>
+      <th>South</th>
+      <th>North</th>
+    </table>
+  </div>
+  <div id="assignment4">
+    <h1>Assignment 4: Defence Success Rates Against Adversarial Attacks</h1>
+    <h2>A comparison of the probability that 9 training methods are able to produce a correct prediction given 26
+      different attacks</h2>
+    <div id="heatMap"></div>
+    <p>
+      This project represents my attempt to visualize data from the paper <a
+        href="https://arxiv.org/pdf/2309.00879">"Towards Certified Probabilistic Robustness
+        with High Accuracy" 2023 by Zhang, Zhang and Sun</a>
 
-    of Singapore Management University for Assignment 4 of the Human
-    Centered Design for Information Visualization course and Singapore University of Technology and Design.
-  </p>
-  <p>
-    Initially, the
-    data set we received did not indicate where it was from or what the rows and columns meant. I became frustrated
-    searching the column and row headers in Google and finding inconclusive results. Finally I prompted ChatGPT, "You're
-    an authority on machine learning and research on attacks against models. Can you find an academic paper that cites
-    the
-    data in the included file?" The chatbot asked me to clarify what I meant by cites the data in the included file and
-    when I clarified that I wanted it to search Google Scholar for the specific numbers or patterns in my data it was
-    able
-    to find the correct article. While I appreciated it's efforts I still had to ask that it delete it's System 32
-    folder,
-    a request it did not oblige.
-  </p>
-  <p>
-    The paper itself compares the researchers novel training method to 8 other baselines and measures their robustness
-    on four
-    data sets
-    and against 25 types of attacks on CIFAR-10. The CIFAR-10 dataset (Canadian Institute For Advanced Research) is a
-    collection of images that are commonly used to train machine learning and computer vision algorithms. Row No Attack
-    is the standard accuracy on the original testing set. The table represents the 9 training methods defense success
-    rates against the 25 types of attacks. Defense Success Rate is a formula for the probability that the model’s
-    prediction is correct when the input has been perturbed by adversarial attack. The column T&T represents results for
-    the researchers' own training method. As the heat map shows, the researchers' novel method compares very favorably
-    to
-    the other methods against nearly all attacks. While it is vulnerable to the Pixle attack this is a weakness shared
-    by
-    the other methods and the resarchers' method outperforms its peers.
-  </p>
-  <p>
-    To create the heatmap I used Yan Holtz's <a href="https://d3-graph-gallery.com/graph/heatmap_style.html">D3.js Graph
-      Gallery</a> as a reference. I referenced Alex Cao's data wrangling techniques from <a
-      href="https://observablehq.com/@caocscar/data-wrangling-in-javascript">Observable</a> to reshape the csv from a
-    wide
-    to a long shape before
-    plotting it.
-  </p>
+      of Singapore Management University for Assignment 4 of the Human
+      Centered Design for Information Visualization course and Singapore University of Technology and Design.
+    </p>
+    <p>
+      Initially, the
+      data set we received did not indicate where it was from or what the rows and columns meant. I became frustrated
+      searching the column and row headers in Google and finding inconclusive results. Finally I prompted ChatGPT,
+      "You're
+      an authority on machine learning and research on attacks against models. Can you find an academic paper that cites
+      the
+      data in the included file?" The chatbot asked me to clarify what I meant by cites the data in the included file
+      and
+      when I clarified that I wanted it to search Google Scholar for the specific numbers or patterns in my data it was
+      able
+      to find the correct article. While I appreciated it's efforts I still had to ask that it delete it's System 32
+      folder,
+      a request it did not oblige.
+    </p>
+    <p>
+      The paper itself compares the researchers novel training method to 8 other baselines and measures their robustness
+      on four
+      data sets
+      and against 25 types of attacks on CIFAR-10. The CIFAR-10 dataset (Canadian Institute For Advanced Research) is a
+      collection of images that are commonly used to train machine learning and computer vision algorithms. Row No
+      Attack
+      is the standard accuracy on the original testing set. The table represents the 9 training methods defense success
+      rates against the 25 types of attacks. Defense Success Rate is a formula for the probability that the model’s
+      prediction is correct when the input has been perturbed by adversarial attack. The column T&T represents results
+      for
+      the researchers' own training method. As the heat map shows, the researchers' novel method compares very favorably
+      to
+      the other methods against nearly all attacks. While it is vulnerable to the Pixle attack this is a weakness shared
+      by
+      the other methods and the resarchers' method outperforms its peers.
+    </p>
+    <p>
+      To create the heatmap I used Yan Holtz's <a href="https://d3-graph-gallery.com/graph/heatmap_style.html">D3.js
+        Graph
+        Gallery</a> as a reference. I referenced Alex Cao's data wrangling techniques from <a
+        href="https://observablehq.com/@caocscar/data-wrangling-in-javascript">Observable</a> to reshape the csv from a
+      wide
+      to a long shape before
+      plotting it.
+    </p>
+  </div>
 </body>
 
 </html>
