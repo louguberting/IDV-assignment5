@@ -4,7 +4,7 @@ const width = 825 - margin.left - margin.right,
 
 const svg = d3.select("#heatMap")
     .append("svg")
-    .attr("width", width + 155)
+    .attr("width", width + 200)
     .attr("height", height + 35)
     .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -24,14 +24,14 @@ for (let d of rawdata) {
 };
 
 
-console.log(data)
+//console.log(data)
 
 // Extract the Header Row labels
 const trainingMethods = Array.from(new Set(data.map(d => d.method)))
-console.log(trainingMethods)
+//console.log(trainingMethods)
 // Extract the Attack labels from the first column
 const attacks = Array.from(new Set(data.map(d => d.Attack)))
-console.log(attacks)
+//console.log(attacks)
 
 // Build X scale and axis
 const x = d3.scaleBand()

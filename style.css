@@ -6,11 +6,11 @@ html {
 
 body {
   background-color: #e6fcf5;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Overpass Mono";
   font-weight: 400;
   line-height: 1.65;
   color: #333;
-  max-width: 800px;
+  max-width: 1100px;
   margin: auto;
   font-size: 16px;
 }
@@ -65,9 +65,10 @@ small,
 }
 
 table {
-  width: 100%;
+  width: 75%;
   border-collapse: collapse;
   background-color: white;
+  justify-self: center;
 }
 
 th,
@@ -101,6 +102,10 @@ td {
 }
 
 /* Styles from Assignment 3 */
+#assignment3 > svg {
+  align-self: center;
+}
+
 .bar {
   fill: #e6c45c;
   stroke: #888;
