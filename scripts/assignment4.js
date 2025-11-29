@@ -80,8 +80,8 @@ const mouseover = function (event, d) {
 const mousemove = function (event, d) {
     tooltip
         .html(d.method + " has a defense success rate of " + d.rate + "% against " + d.Attack)
-        .style("left", (event.x + 10) + "px")
-        .style("top", (event.y + 10) + "px")
+        .style("left", (event.pageX + 10) + "px")
+        .style("top", (event.pageY + 10) + "px")
 }
 const mouseleave = function (event, d) {
     tooltip

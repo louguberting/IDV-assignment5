@@ -73,11 +73,28 @@ table {
 
 th,
 td {
-  border: 5px solid red;
+  border: 5px solid black;
   padding: 8px;
   text-align: center;
+  color: black;
+  font-size: medium;
+}
+
+#assignment2 {
+  color: blue;
+  background-color: white;
+  border-radius: 10%;
+  border: 5px solid blue;
+  padding: 8px;
+  font-style: italic;
+  height: fit-content;
+  margin: 20px;
+}
+
+#teamtable th,
+#teamtable td {
+  border: 5px solid red;
   color: red;
-  font-size: 1.5rem;
 }
 
 /* The classes below are for Assignment 2 SVGs */
@@ -102,8 +119,22 @@ td {
 }
 
 /* Styles from Assignment 3 */
-#assignment3 > svg {
-  align-self: center;
+#assignment3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#assignment3 svg {
+  background: white;
+  border: 3px solid #888;
+  display: block;
+}
+
+#assignment3 text {
+  font-size: 20px;
+  text-anchor: middle;
+  font-weight: bold;
 }
 
 .bar {
@@ -117,12 +148,6 @@ td {
   stroke: #e6c45c;
   stroke-width: 2.5px;
   stroke-dasharray: 6, 4;
-}
-
-text {
-  font-size: 20px;
-  text-anchor: middle;
-  font-weight: bold;
 }
 
 .axis text {

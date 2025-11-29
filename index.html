@@ -17,6 +17,53 @@
 </head>
 
 <body>
+  <div id="assignment5">
+    <h1>Assignment 5</h1>
+    <h2>Combining all previous assignments into a cohesive page</h2>
+    <p>
+      The first thing I did was use <a href="https://github.com/Rich-Harris/degit">degit</a> to make a copy of
+      Assignment 4 as my starting
+      point. I knew that Assignment had the nicest tooling in terms of a git ignore and css so I wanted it as a starting
+      point and degit allowed me to do that in a brand new repo. S/O Rich Harris, much love to you, big dawg.
+    </p>
+    <p>
+      Starting in the new project, I decided to wrap each of my Assignments in a div so I could keep track of where I
+      was in the file.
+    </p>
+    <p>
+      I then went to add Assignment 1 into the new project since that was the simplest assignment. I ran into two
+      decisions straight away. In both Assignment 1 and 4 I used script tags in the header to run javascript but I knew
+      that in other assignments I had run it inline or from separate js files as modules. What should I make my standard
+      for this Assignment? I decided on using separate modules for each Assignment's scripts. In this way, I could avoid
+      vonflict if the names of constants were reused and keep my index page pretty legible. The second decision was
+      around styling, I had used daisy.ui on Assignment 1 but plain CSS for all the others. Rather than stick with
+      Daisy.ui I figured to move everything to straight CSS and consolidate as much as possible in the Styles file.
+      Assignment 1 was ugly when it got into the project but I took the attitude of "Let's just get everything on the
+      page and then style it" and ran with it.
+    </p>
+    <p>
+      Adding Assignment 2 was next and here I ran into my next challenge. My script in assignment 2 was selecting the
+      tbody element to start appending content; it was inserting itself into Assignment 1's table. I changed the select
+      to target a new id I made specifically for the Assignment 2 table. My logos weren't rotating however which
+      prompted me to grab the CSS classes that powered those changes and add them to my new project. Additionally I
+      brough along some of the table styling I had made to emulate the appearance of markings on an NHL ice rink. These
+      were now applying to the table from Assignment 1 but I knew I could fix that latter.
+    </p>
+    <p>
+      Last, Assignment 3 and it's huge inline blocks of JS from ChatGPT from Gemini. I took the pure html from that
+      project and dumped it into index and excised all the javascript for its own new file. I had also done all my
+      styling in a style tag for this assignment so I moved those css classes into the style file. I didn't like how the
+      different elements were aligning in the div so using the knowledge I'd gained from <a href="https://flexboxfroggy.com/">Flexbox Froggy</a> I
+      turned the div into a flexbox. Initially I forgot to set the flex-direction whcih resulted in a crazy long row. I
+      set the direction to column and align-items to center. Now everything looks better.
+    </p>
+    <p>
+      Adding assignment 3's styles into the sheet was creating problems for assignment four with my axis labels. It
+      turns out Assignment 3's styles were styling all text; to fix this I made it so the text style was limited to the
+      element assignment3 and all its children.
+    </p>
+
+  </div>
   <div id="assignment1">
     <h1>Assignment 1</h1>
     <h2>Singapore PSI table</h2>
@@ -33,7 +80,7 @@
   <div id="assignment2">
     <h1>Assignment 2</h1>
     <h2>NHL Logos</h2>
-    <table>
+    <table id="teamtable">
       <thead>
         <tr>
           <th>Primary Logo</th>
@@ -46,7 +93,6 @@
       <tbody id="teamtablebody">
       </tbody>
     </table>
-
   </div>
   <div id="assignment3">
     <h1>Assignment 3</h1>
